@@ -226,3 +226,68 @@ if(buttonDeleted.length){
 }
 
 // End Deleted Item
+
+// Upload Image
+const uploadImage = document.querySelector("[upload-image]")
+
+const cencelImage = document.querySelector("[cencel-upload]")
+if(uploadImage){
+    const uploadImageInput = document.querySelector("[upload-image-input]")
+    const uploadImagePreview = document.querySelector("[upload-image-preview]")
+
+    uploadImageInput.addEventListener("change", (e) =>{
+        const file = e.target.files[0]
+        if(file){
+            uploadImagePreview.src = URL.createObjectURL(file)
+        }
+        cencelImage.classList.remove("d-none")
+    })
+
+    cencelImage.addEventListener("click", () =>{
+        uploadImageInput.value= "" 
+        uploadImagePreview.src = ""
+        cencelImage.classList.add("d-none")
+    })
+}
+
+// End Upload Image
+
+// Sort
+const sort = document.querySelector("[sort]")
+if(sort){
+    const sortSelect = sort.querySelector("[sort-select]")
+    const sortClear = sort.querySelector("[sort-clear]")
+    let url = new URL(window.location.href)
+
+    sortSelect.addEventListener("change", (e) =>{
+        const value = e.target.value
+        const [sortKey,sortValue] = value.split("-")
+        url.searchParams.set("sortKey",sortKey)
+        url.searchParams.set("sortValue",sortValue)
+        
+        window.location.href = url.href
+    })
+
+    // Xoa Sap Xep
+    sortClear.addEventListener("click",()=>{
+        url.searchParams.delete("sortKey")
+        url.searchParams.delete("sortValue")
+
+
+        window.location.href = url.href
+    })
+
+    // The selected cho option
+    const sortKey = url.searchParams.get("sortKey")
+    const sortValue =  url.searchParams.get("sortValue")
+
+    if(sortKey && sortValue){
+        const stringSort = `${sortKey}-${sortValue}`
+
+        const optionSelected = sortSelect.querySelector(`option[value=${stringSort}]`)
+        optionSelected.selected = true
+    }
+
+}
+
+// End Sort

@@ -4,7 +4,7 @@ include ../../mixins/filter-status.pug
 include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
 include ../../mixins/alert.pug
-
+include ../../mixins/sort.pug
 block main 
     .container-product
         +success(5000)
@@ -15,6 +15,8 @@ block main
                     +filter-status(filterStatus)
                 .change-multi-product 
                     +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+                .sort-product 
+                    +sort()
                 .search-product 
                     +search(keyword)
                 

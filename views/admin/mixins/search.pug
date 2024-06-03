@@ -1,0 +1,17 @@
+
+mixin search(keyword)
+    form(id = "form-search")
+        .input-group
+            input(
+                type="text"
+                placeholder = "Nhập từ khóa"
+                name = "keyword"
+                class = "input-search"
+                value = keyword
+            ) 
+            .input-group-append
+                button(
+                    class = "btn-submit" 
+                    type = "submit"
+                ) 
+                    i(class ="fa-solid fa-magnifying-glass")

@@ -1,0 +1,28 @@
+extends ../../layout/product.pug
+
+
+block main
+    
+    .container-product
+        .product-header Thông tin sản phẩm
+
+        if(product.title)
+            h1(class = "edit-product") #{product.title}
+        if(product.price)
+            div(class = "edit-product") Giá : <b > #{product.price} </b>VND
+        if(product.price)
+            div(class = "edit-product") Giảm giá : <b > #{product.discountPercentage} %</b>
+        if(product.stock)
+            div(class = "edit-product") Còn lại : <b > #{product.stock} sản phẩm</b>
+        if(product.image)
+            div(class = "edit-product")
+                img(
+                    src= product.image 
+                )
+        if(product.description)
+            div(class = "edit-product") <b > !{product.description} </b>
+        a(
+            class = "btn"
+            href=`${prefixAdmin}/products/edit/${product.id}`
+        ) Add to card
+

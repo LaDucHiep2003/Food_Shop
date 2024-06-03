@@ -1,0 +1,209 @@
+
+extends ../../layout/default.pug
+
+block main 
+    form#search-form(action='')
+        input#search-box(type='search' name='' placeholder='search here')
+        label.fas.fa-search(for='search-box')
+        i#close.fas.fa-times
+
+        
+    section(class = "home" id = "home")
+        div(class = "swiper mySwiper home-slider")
+            div(class = "swiper-wrapper wrapper")
+                each item in product
+                    if(item.featured == "1")
+                        div(class = "swiper-slide slide")
+                            .content
+                                span our special dish
+                                h3 #{item.title}
+                                p #{item.description}
+                                a.btn(href='#') Order Now
+                            .image
+                                img(src='client/images/Pieces of chicken.jpg' alt='')
+                
+            
+
+                
+    section(class = "dishes" id = "dishes")
+        h3.sub-heading our dishes
+        h1.heading popular dishes
+        .box-container
+            each item in product
+                .box
+                    a.fas.fa-heart(href='#')
+                    a.fas.fa-eye(href='#')
+                    a(href= `products/detail/${item.slug}`)
+                        img(src= item.image alt='') 
+                    a(href=`products/detail/${item.slug}`) 
+                        h3 #{item.title}
+                    .stars
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star-half-alt
+                    span #{item.price} VND
+                    a.btn(href='#') add to cart
+            
+
+
+    section#about.about
+        h3.sub-heading about us
+        h1.heading why choose us?
+        .row
+            .image
+                img(src='./images//Pieces of chicken.jpg' alt='')
+            .content
+                h3 best food in the country
+                p Lorem ipsum dolor sit amet ...
+                p Lorem ipsum doloa 
+                .icons-container
+                    .icons
+                        i.fas.fa-shipping-fast
+                        span free delivery
+                    .icons
+                        i.fas.fa-dollar-sign
+                        span easy payments
+                    .icons
+                        i.fas.fa-headset
+                        span 24/7 service
+                a.btn(href='') learn more
+
+
+
+    section#menu.menu
+        h3.sub-heading our menu
+        h1.heading todat&apos;s speciality
+        .box-container
+            .box
+                .image
+                    img(src='/images//Pieces of chicken.jpg' alt='')
+                    a.fas.fa-heart(href='#')
+                .content
+                    .stars
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star-half-alt
+                    h3 delicious food
+                    p Lorem ipsum dolor sit
+                    a.btn(href='#') add to cart
+                    span.price $12.99
+            .box
+                .image
+                    img(src='/images//Pieces of chicken.jpg' alt='')
+                    a.fas.fa-heart(href='#')
+                .content
+                    .stars
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star-half-alt
+                    h3 delicious food
+                    p Lorem ipsum dolor sit
+                    a.btn(href='#') add to cart
+                    span.price $12.99
+            .box
+                .image
+                    img(src='/images//Pieces of chicken.jpg' alt='')
+                    a.fas.fa-heart(href='#')
+                .content
+                    .stars
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star-half-alt
+                    h3 delicious food
+                    p Lorem ipsum dolor sit
+                    a.btn(href='#') add to cart
+                    span.price $12.99
+
+
+    section#review.review
+        h3.sub-heading customer&apos;s review
+        .heading what they say
+        .swiper.mySwiper.review-slider
+            .swiper-wrapper
+                .swiper-slide.slide
+                    i.fas.fa-quote-right
+                    .user
+                        img(src='./images//Pieces of chicken.jpg' alt='')
+                        .user-info
+                            h3 join deo
+                            .stars
+                                i.fas.fa-star
+                                i.fas.fa-star
+                                i.fas.fa-star
+                                i.fas.fa-star-half-alt
+                    p Lorem ipsum dolor...
+                .swiper-slide.slide
+                    i.fas.fa-quote-right
+                    .user
+                        img(src='./images//Pieces of chicken.jpg' alt='')
+                        .user-info
+                            h3 join deo
+                            .stars
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star-half-alt
+                    p Lorem ipsum dolor...
+                .swiper-slide.slide
+                    i.fas.fa-quote-right
+                    .user
+                        img(src='./images//Pieces of chicken.jpg' alt='')
+                        .user-info
+                            h3 join deo
+                            .stars
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star-half-alt
+                    p Lorem ipsum dolor...
+                .swiper-slide.slide
+                    i.fas.fa-quote-right
+                    .user
+                        img(src='./images//Pieces of chicken.jpg' alt='')
+                        .user-info
+                            h3 join deo
+                            .stars
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star
+                            i.fas.fa-star-half-alt
+                    p Lorem ipsum dolor...
+
+
+    section#order.order
+        h3.sub-heading order now
+        h1.heading free and fast
+        form(action='')
+            .inputBox
+                .input
+                    span your name
+                    input(type='text' placeholder='enter your name')
+                .input
+                    span your numer
+                    input(type='number' placeholder='enter your number')
+            .inputBox
+                .input
+                    span your order
+                    input(type='text' placeholder='enter food name')
+                .input
+                    span addtional
+                    input(type='number' placeholder='extra with food')
+            .inputBox
+                .input
+                    span how much
+                    input(type='number' placeholder='how many order')
+                .input
+                    span date and time
+                    input(type='datetime-local')
+            .inputBox
+                .input
+                    span your message
+                    textarea(name='' id='' cols='30' rows='30' placeholder='enter your address')
+                .input
+                    span your messages
+                    textarea(name='' id='' cols='30' rows='30' placeholder='enter your your message')
+            input.btn(type='submit' value='order now')

@@ -1,0 +1,128 @@
+doctype html
+html(lang='en', dir='ltr')
+  head
+    meta(charset='UTF-8')
+    title #{pageTitle}
+    link(href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css', rel='stylesheet')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel="stylesheet", href="/admin/css/sidebar.css")
+body
+    .sidebar.close
+      .logo-details
+        i.bx.bxl-c-plus-plus
+        span.logo_name ADMIN
+      ul.nav-links
+        li
+          a(href= `/admin/dashboard`)
+            i.bx.bx-grid-alt
+            span.link_name Dashboard
+          ul.sub-menu.blank
+            li
+              a.link_name(href='/admin/dashboard') Dashboard
+        
+        li
+            .iocn-link
+                a(href='/admin/products')
+                    i.bx.bx-collection
+                    span.link_name Danh sách sản phẩm
+                i.bx.bxs-chevron-down.arrow
+            ul.sub-menu
+                li
+                    a.link_name(href='#') Sản phẩm
+                li
+                    a(href='/admin/products') Danh sách sản phẩm
+               
+                li
+                    a(href='/admin/products/create') Thêm sản phẩm
+                li
+                    a(href='/admin/products/deleted') Sản phẩm đã xóa
+        
+        li
+            .iocn-link
+                a(href='/admin/products')
+                    i.bx.bx-collection
+                    span.link_name Danh mục sản phẩm
+                i.bx.bxs-chevron-down.arrow
+            ul.sub-menu
+                li
+                    a.link_name(href='/admin/products-category') Danh mục
+                
+                li
+                    a(href='/admin/products-category') Danh sách danh mục
+                
+                li
+                    a(href='/admin/products-category/create') Thêm danh mục
+                li
+                    a(href='/admin/products/deleted') Danh mục đã xóa
+        
+        li
+            .iocn-link
+                a(href='/admin/products')
+                    i.bx.bx-collection
+                    span.link_name Nhóm quyền
+                i.bx.bxs-chevron-down.arrow
+            ul.sub-menu
+                li
+                    a.link_name(href='/admin/roles') Nhóm quyền
+                
+                li
+                    a(href='/admin/roles') Danh sách nhóm quyền
+                
+                li
+                    a(href='/admin/roles/create') Thêm nhóm quyền
+                li
+                    a(href='/admin/products/deleted') Nhóm quyền đã xóa
+        
+        li
+            a(href='/admin/roles/permissions')
+                i.bx.bx-pie-chart-alt-2
+                span.link_name Phân quyền
+            ul.sub-menu.blank
+                li
+                    a.link_name(href='/admin/roles/permissions') Phân quyền
+       
+        li
+            .iocn-link
+                a(href='/admin/accounts')
+                    i.bx.bx-collection
+                    span.link_name Danh sách tài khoản
+                i.bx.bxs-chevron-down.arrow
+            ul.sub-menu
+                li
+                    a.link_name(href='/admin/accounts') Tài khoản
+               
+                li
+                    a(href='/admin/accounts') Danh sách tài khoản
+                
+                li
+                    a(href='/admin/accounts/create') Thêm tài khoản
+                li
+                    a(href='/admin/accounts/deleted') Tài khoản đã xóa
+        //- li
+        //-   .profile-details
+        //-     .profile-content
+        //-       img(src= "user.avatar", alt='profileImg')
+        //-     .name-job
+        //-       .profile_name #{user.fullName}
+        //-       .job #{user.email}
+        //-     div(class = "") 
+        //-         a(
+        //-             href="/admin/auth/logout"
+        //-         )   
+        //-             i.bx.bx-log-out
+            
+            
+       
+    script.
+        let arrow = document.querySelectorAll(".arrow");
+        for (var i = 0; i < arrow.length; i++) {
+            arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+        }
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".logo-details");
+        sidebarBtn.addEventListener("click", ()=>{
+            sidebar.classList.toggle("close");
+        });

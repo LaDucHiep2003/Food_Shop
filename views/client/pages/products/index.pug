@@ -1,0 +1,21 @@
+extends ../../layout/product.pug
+
+block main 
+    section(class = "dishes" id = "dishes" style = "margin-top : 5rem")
+        h3.sub-heading our dishes
+        h1.heading popular dishes
+        .box-container
+            each item in products
+                .box
+                    a.fas.fa-heart(href='#')
+                    a.fas.fa-eye(href='#')
+                    a(href="")
+                        img(src= item.image alt='') 
+                    h3 #{item.title}
+                    .stars
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star
+                        i.fas.fa-star-half-alt
+                    span #{item.price} VND
+                    a.btn(href='#') add to cart

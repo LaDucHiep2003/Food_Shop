@@ -2,21 +2,25 @@
 const ProductCategory = require("../../models/product-category.model")
 const systemConfig = require('../../config/system')
 const createTree = require("../../helpers/createTree")
+const filterStatusHelper = require('../../helpers/filterStatus')
 
 // [GET] /admin/product-category
 module.exports.index = async (req, res) => {
 
-    // let find = {
-    //     deleted: false
-    // }
+    const filterStatus = filterStatusHelper(req.query)
+
+    let find = {
+        deleted: false
+    }
 
 
-    // const records = await ProductCategory.find(find)
-    // const newRecords = createTree.tree(records)
+    const records = await ProductCategory.find(find)
+    const newRecords = createTree.tree(records)
 
     res.render("admin/pages/product-category/index", {
         pageTitle: "Trang Danh Muc San Pham",
-        // records: records
+        records: newRecords,
+        filterStatus : filterStatus
     })
 }
 
@@ -34,7 +38,8 @@ module.exports.create = async (req, res) => {
     // console.log(newRecords);
     res.render("admin/pages/product-category/create", {
         pageTitle: "Tao Danh Muc San Pham",
-        records: newRecords
+        records: newRecords,
+        filterStatus : filterStatus
     })
 }
 

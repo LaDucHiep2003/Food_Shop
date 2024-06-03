@@ -1,0 +1,107 @@
+
+
+extends ../../layout/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+
+block main 
+    +alert-error(5000)
+    +success(5000)
+    .container-product
+        .product-header Thêm mới danh mục sản phẩm
+        form(
+            action= `${prefixAdmin}/products-category/create`
+            enctype="multipart/form-data"
+            id = "form-create-product"
+            method = "POST"
+        ) 
+
+            div(class = "form-add-data")
+                label(for="title") Tiêu đề 
+                input(
+                    type="text"
+                    class = "input-search"
+                    id = "title"
+                    name = "title"
+                    
+                ) 
+            div(class = "form-add-data")
+                label(for="parent_id") Danh mục cha
+                select(
+                    name = "parent_id"
+                    id = "parent_id"
+                    class = "input-search"
+                )
+                    option(value = "") -----Chọn danh mục cha-----
+                    if(records)
+                        +select-tree(records)
+            div(class = "form-add-data")
+                label(for="desc") Mô tả 
+                textarea(
+                    class = "input-search textarea-mce"
+                    id = "desc"
+                    name = "description"
+                    row = "5"
+                ) 
+            div(
+                class = "form-add-data"
+                upload-image
+            )
+                
+                label(for="image") Ảnh
+                input(
+                    type="file"
+                    class = "input-search-file"
+                    id = "image"
+                    name = "image"
+                    accept = "image/*"
+                    upload-image-input
+                ) 
+                button(
+                    class = "btn-cencel-upload d-none"
+                    cencel-upload) X
+                
+                img(
+                    src=""
+                    class = "image-preview"
+                    upload-image-preview
+                )
+            div(class = "form-add-data")
+                label(for="position") Vị trí
+                input(
+                    type="text"
+                    class = "input-search"
+                    id = "position"
+                    name = "position"
+                    placeholder = "Tự động tăng"
+                    min = "1"
+                ) 
+            div(class = "form-add-data form-check form-check-inline")
+                
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "statusActive"
+                    name = "status"
+                    value = "active"
+                    checked
+                ) 
+                label(for = "statusActive" class = "form-check-label") Hoạt động
+
+            div(class = "form-add-data form-check form-check-inline")
+                
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "statusInActive"
+                    name = "status"
+                    value = "inactive"
+                ) 
+                label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
+            
+            div(class = "form-add-data")
+                button(
+                    type = "submit"
+                    class = "btn btn-warning"
+                ) Tạo mới
+        

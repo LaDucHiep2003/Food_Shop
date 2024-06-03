@@ -10,6 +10,7 @@ const methodOverride = require('method-override')
 const flash = require('express-flash')
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
+const path = require('path');
 require('dotenv').config()
 
 const port = process.env.port
@@ -33,6 +34,8 @@ app.use(methodOverride('_method'))
 // App local
 app.locals.prefixAdmin = systemConfig.prefixAdmin
 
+// TinyMCE
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 // Router
 route(app)

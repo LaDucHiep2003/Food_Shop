@@ -1,4 +1,5 @@
 
+
 extends ../../layout/default.pug
 include ../../mixins/alert.pug
 include ../../mixins/select-tree.pug
@@ -7,9 +8,9 @@ block main
     +alert-error(5000)
     +success(5000)
     .container-product
-        .product-header Chỉnh sửa sản phẩm
+        .product-header Chỉnh sửa danh mục sản phẩm
         form(
-            action= `${prefixAdmin}/products/edit/${product.id}?_method=PATCH`
+            action= `${prefixAdmin}/products-category/edit/${data.id}?_method=PATCH`
             enctype="multipart/form-data"
             id = "form-create-product"
             method = "POST"
@@ -22,18 +23,18 @@ block main
                     class = "input-search"
                     id = "title"
                     name = "title"
-                    value = product.title
+                    value = data.title
                 ) 
             div(class = "form-add-data")
-                label(for="product_category_id") Danh mục
+                label(for="parent_id") Danh mục cha
                 select(
-                    name = "product_category_id"
-                    id = "product_category_id"
+                    name = "parent_id"
+                    id = "parent_id"
                     class = "input-search"
                 )
-                    option(value = "") -----Chon danh mục-----
-                    if(category)
-                        +select-tree(category,1,product.product_category_id)
+                    option(value = "") -----Chọn danh mục cha-----
+                    if(records)
+                        +select-tree(records, 1, data.parent_id)
             div(class = "form-add-data")
                 label(for="desc") Mô tả 
                 textarea(
@@ -41,65 +42,7 @@ block main
                     id = "desc"
                     name = "description"
                     row = "5"
-                ) #{product.description}
-            div(class = "form-add-data form-check form-check-inline")
-                
-                input(
-                    type="radio"
-                    class = "form-check-input"
-                    id = "featured1"
-                    name = "featured"
-                    value = "1"
-                    checked = (product.featured == "1" ? true : false)
-                ) 
-                label(for = "feature1" class = "form-check-label") Nổi bật
-
-            div(class = "form-add-data form-check form-check-inline")
-                
-                input(
-                    type="radio"
-                    class = "form-check-input"
-                    id = "featured0"
-                    name = "featured"
-                    value = "0"
-                    checked = (product.featured == "0" ? true : false)
-                ) 
-                label(for = "featured0" class = "form-check-label") Không nổi bật
-            
-
-
-            div(class = "form-add-data")
-                label(for="price") Giá
-                input(
-                    type="price"
-                    class = "input-search"
-                    id = "price"
-                    name = "price"
-                    min = "0"
-                    value = product.price
-                ) 
-            
-            div(class = "form-add-data")
-                label(for="discount") % Giảm giá 
-                input(
-                    type="number"
-                    class = "input-search"
-                    id = "discount"
-                    name = "discountPercentage"
-                    min = "0"
-                    value = product.discountPercentage
-                ) 
-            
-            div(class = "form-add-data")
-                label(for="stock") Số lượng
-                input(
-                    type="text"
-                    class = "input-search"
-                    id = "stock"
-                    name = "stock"
-                    min = "0"
-                    value = product.stock
-                ) 
+                ) #{data.description}
             div(
                 class = "form-add-data"
                 upload-image
@@ -119,7 +62,7 @@ block main
                     cencel-upload) X
                 
                 img(
-                    src= product.image
+                    src=data.thumbnail
                     class = "image-preview"
                     upload-image-preview
                 )
@@ -132,7 +75,7 @@ block main
                     name = "position"
                     placeholder = "Tự động tăng"
                     min = "1"
-                    value = product.position
+                    value = data.position
                 ) 
             div(class = "form-add-data form-check form-check-inline")
                 
@@ -142,7 +85,7 @@ block main
                     id = "statusActive"
                     name = "status"
                     value = "active"
-                    checked = (product.status == "active" ? true : false)
+                    checked = (data.status == "active" ? true : false)
                 ) 
                 label(for = "statusActive" class = "form-check-label") Hoạt động
 
@@ -154,16 +97,13 @@ block main
                     id = "statusInActive"
                     name = "status"
                     value = "inactive"
-                    checked = (product.status == "inactive" ? true : false)
+                    checked = (data.status == "inactive" ? true : false)
                 ) 
                 label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
             
             div(class = "form-add-data")
                 button(
                     type = "submit"
-                    class = "btn btn-primary"
+                    class = "btn btn-warning"
                 ) Áp dụng
         
-
-
-    script(src="/admin/js/product.js") 

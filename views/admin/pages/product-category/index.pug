@@ -9,7 +9,7 @@ include ../../mixins/table-tree.pug
 block main 
     .container-product
         +success(5000)
-        .product-header Danh sách sản phẩm
+        .product-header Danh mục sản phẩm
         .product-body 
             .filter-body
                 .filter 
@@ -18,8 +18,8 @@ block main
                     +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
                 .sort-product 
                     +sort()
-                //- .search-product 
-                //-     +search(keyword)
+                .search-product 
+                    +search(keyword)
                 
         .product-body 
             table(
@@ -38,7 +38,8 @@ block main
                         th Hành động
                 tbody 
                     +table-tree(records)
-                    
+        .pagination-container 
+            +pagination(pagination)           
     form(
         action = ""
         method = "POST"

@@ -1,0 +1,42 @@
+
+
+extends ../../layout/auth.pug
+include ../../mixins/alert.pug
+
+
+block main 
+    link(rel="stylesheet", href="/admin/css/login.css")
+    +alert-error(5000)
+    .container.my-5
+        .row.justify-content-center
+            .col-8
+                form(
+                    action = `${prefixAdmin}/auth/login`
+                    method = "POST"
+                    class = "d-flex justify-content-center"
+                )
+                    .login-box
+                        .login-header
+                            header Quản lý đăng nhập
+                        .input-box
+                            input(
+                                class = "input-field"
+                                type='email' 
+                                placeholder='Email' 
+                                name = "email"
+                            )
+                        .input-box
+                            input(
+                                class = "input-field"
+                                type='password' 
+                                placeholder='Password'  
+                                name = "passWord"
+                            )
+                        .input-submit
+                            button(
+                                type = "submit"
+                                id = "submit"
+                                class = "submit-btn"
+                            )
+                            label(for='submit') Đăng nhập
+        

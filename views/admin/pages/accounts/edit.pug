@@ -1,0 +1,117 @@
+
+
+extends ../../layout/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+
+block main 
+    +alert-error(5000)
+    +success(5000)
+    .container-product
+        .product-header Chỉnh sửa tài khoản
+        form(
+            action= `${prefixAdmin}/accounts/edit/${data.id}?_method=PATCH`
+            enctype="multipart/form-data"
+            id = "form-create-product"
+            method = "POST"
+        ) 
+
+            div(class = "form-add-data")
+                label(for="fullName") Họ tên
+                input(
+                    type="text"
+                    class = "input-search"
+                    id = "fullName"
+                    name = "fullName"
+                    value = data.fullName
+                )
+            div(class = "form-add-data")
+                label(for="email") Email
+                input(
+                    type="email"
+                    class = "input-search"
+                    id = "email"
+                    name = "email"
+                    value = data.email
+                ) 
+            div(class = "form-add-data")
+                label(for="passWord") Mật khẩu
+                input(
+                    type="password"
+                    class = "input-search"
+                    id = "passWord"
+                    name = "passWord"
+                    
+                )
+            div(class = "form-add-data")
+                label(for="phone") Số điện thoại
+                input(
+                    type="text"
+                    class = "input-search"
+                    id = "phone"
+                    name = "phone"
+                    value = data.phone
+                )
+            div(
+                class = "form-add-data"
+                upload-image
+            )
+                
+                label(for="avatar") Avatar
+                input(
+                    type="file"
+                    class = "input-search-file"
+                    id = "avatar"
+                    name = "avatar"
+                    accept = "image/*"
+                    upload-image-input
+                ) 
+                button(
+                    class = "btn-cencel-upload d-none"
+                    cencel-upload) X
+                
+                img(
+                    src= data.avatar
+                    class = "image-preview"
+                    upload-image-preview
+                )
+            div(class = "form-add-data")
+                label(for = "role_id") Phân quyền
+                select(class = "input-search" id = "role_id" name = "role_id")
+                    option(disabled) --Chọn--
+                    each item in roles
+                        option(
+                            value = item.id
+                            selected = (item.id == data.role_id ? true : false)
+                        ) #{item.title}
+            div(class = "form-add-data form-check form-check-inline")
+                
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "statusActive"
+                    name = "status"
+                    value = "active"
+                    checked = (data.status == "active" ? true : false)
+
+                ) 
+                label(for = "statusActive" class = "form-check-label") Hoạt động
+
+            div(class = "form-add-data form-check form-check-inline")
+                
+                input(
+                    type="radio"
+                    class = "form-check-input"
+                    id = "statusInActive"
+                    name = "status"
+                    value = "inactive"
+                    checked = (data.status == "inactive" ? true : false)
+                ) 
+                label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
+            
+            div(class = "form-add-data")
+                button(
+                    type = "submit"
+                    class = "btn btn-warning"
+                ) Cập nhật
+        

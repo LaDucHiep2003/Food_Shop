@@ -1,7 +1,8 @@
 
 mixin filter-status(filterStatus)
-    each item in filterStatus
-        button(
-            class = `btn-status ${item.class}`
-            button-status = item.status
-        ) #{item.name}
+    .inner-status
+        each item in filterStatus
+            button(
+                class = `btn-status ${item.class}`
+                button-status = item.status
+            ) #{item.name}

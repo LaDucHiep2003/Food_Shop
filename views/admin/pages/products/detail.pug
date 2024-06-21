@@ -3,35 +3,43 @@ extends ../../layout/default.pug
 
 block main
     
-    .container-product
-        .product-header Thông tin sản phẩm
-
-        if(product.title)
-            h1(class = "edit-product") #{product.title}
-        if(product.price)
-            div(class = "edit-product") Giá : <b > #{product.price} </b>VND
-        if(product.price)
-            div(class = "edit-product") Giảm giá : <b > #{product.discountPercentage} %</b>
-        if(product.stock)
-            div(class = "edit-product") Còn lại : <b > #{product.stock} sản phẩm</b>
-        if(product.image)
-            div(class = "edit-product")
-                img(
-                    src= product.image 
-                    style = "width : 100px"
-                )
-        if(product.status)
-            div(class = "edit-product")
-                span Trạng thái 
-                if(product.status == "active")
-                    span(class = "badge badge-success") Hoạt động 
-                else 
-                    span(class = "badge badge-danger") Dừng hoạt động
-        if(product.position)
-            div(class = "edit-product") Vị trí : <b > #{product.position} </b>
-        if(product.description)
-            div(class = "edit-product") Mô tả :  <b > !{product.description} </b>
-        a(
-            class = "btn btn-warning"
-            href=`${prefixAdmin}/products/edit/${product.id}`
-        ) Chỉnh sửa
+    .section-products
+        .container-fluid
+            .header
+                .inner-head
+                    .row 
+                        div(class = "col-12") 
+                            p(class = "inner-title") ShopWinMart
+                    .row 
+                        div(class = "col-6") 
+                            p(class = "inner-desc") Thông tin sản phẩm
+            .inner-body
+                if(product.title)
+                    h1(class = "edit-product") #{product.title}
+                if(product.price)
+                    div(class = "edit-product") Giá : <b > #{product.price} </b>VND
+                if(product.price)
+                    div(class = "edit-product") Giảm giá : <b > #{product.discountPercentage} %</b>
+                if(product.stock)
+                    div(class = "edit-product") Còn lại : <b > #{product.stock} sản phẩm</b>
+                if(product.image)
+                    div(class = "edit-product")
+                        img(
+                            src= product.image 
+                            style = "width : 100px"
+                        )
+                if(product.status)
+                    div(class = "edit-product")
+                        span Trạng thái 
+                        if(product.status == "active")
+                            span(class = "badge badge-success") Hoạt động 
+                        else 
+                            span(class = "badge badge-danger") Dừng hoạt động
+                if(product.position)
+                    div(class = "edit-product") Vị trí : <b > #{product.position} </b>
+                if(product.description)
+                    div(class = "edit-product") Mô tả :  <b > !{product.description} </b>
+                a(
+                    class = "btn btn-warning"
+                    href=`${prefixAdmin}/products/edit/${product.id}`
+                ) Chỉnh sửa

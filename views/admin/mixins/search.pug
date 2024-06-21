@@ -1,12 +1,12 @@
 
 mixin search(keyword)
     form(id = "form-search")
-        .input-group
+        div(class = "form-group inner-search")
             input(
                 type="text"
                 placeholder = "Nhập từ khóa"
                 name = "keyword"
-                class = "input-search"
+                class = "form-control"
                 value = keyword
             ) 
             .input-group-append

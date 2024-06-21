@@ -5,32 +5,42 @@ include ../../mixins/alert.pug
 block main 
     +alert-error(5000)
     +success(5000)
-    .container-product
-        .product-header Thêm mới nhóm quyền
-        form(
-            action= `${prefixAdmin}/roles/create`
-            id = "form-create-product"
-            method = "POST"
-        ) 
-            div(class = "form-add-data")
-                label(for="title") Tiêu đề 
-                input(
-                    type="text"
-                    class = "input-search"
-                    id = "title"
-                    name = "title"                  
-                )
+    .section-products
+        .container-fluid
+            +success(5000)
+            .header
+                .inner-head
+                    .row 
+                        div(class = "col-12") 
+                            p(class = "inner-title") ShopWinMart
+                    .row 
+                        div(class = "col-6") 
+                            p(class = "inner-desc") Thêm mới nhóm quyền
+        .inner-body
+            form(
+                action= `${prefixAdmin}/roles/create`
+                id = "form-create-product"
+                method = "POST"
+            ) 
+                div(class = "form-group")
+                    label(for="title") Tiêu đề 
+                    input(
+                        type="text"
+                        class = "form-control"
+                        id = "title"
+                        name = "title"                  
+                    )
 
-            div(class = "form-add-data")
-                label(for="desc") Mô tả 
-                textarea(
-                    class = "input-search textarea-mce"
-                    id = "desc"
-                    name = "description"
-                    row = "5"
-                ) 
-            div(class = "form-add-data")
-                button(
-                    type = "submit"
-                    class = "btn btn-warning"
-                ) Tạo mới
+                div(class = "form-group")
+                    label(for="desc") Mô tả 
+                    textarea(
+                        class = "form-control textarea-mce"
+                        id = "desc"
+                        name = "description"
+                        row = "5"
+                    ) 
+                div(class = "form-group")
+                    button(
+                        type = "submit"
+                        class = "btn btn-warning"
+                    ) Tạo mới

@@ -5,105 +5,112 @@ include ../../mixins/alert.pug
 include ../../mixins/select-tree.pug
 
 block main 
-    +alert-error(5000)
-    +success(5000)
-    .container-product
-        .product-header Chỉnh sửa danh mục sản phẩm
-        form(
-            action= `${prefixAdmin}/products-category/edit/${data.id}?_method=PATCH`
-            enctype="multipart/form-data"
-            id = "form-create-product"
-            method = "POST"
-        ) 
+    .container-fluid
+        +success(5000)
+        .header
+            .inner-head
+                .row 
+                    div(class = "col-12") 
+                        p(class = "inner-title") ShopWinMart
+                .row 
+                    div(class = "col-6") 
+                        p(class = "inner-desc") Chỉnh sửa danh mục sản phẩm
+        .inner-body
+            form(
+                action= `${prefixAdmin}/products-category/edit/${data.id}?_method=PATCH`
+                enctype="multipart/form-data"
+                id = "form-create-product"
+                method = "POST"
+            ) 
 
-            div(class = "form-add-data")
-                label(for="title") Tiêu đề 
-                input(
-                    type="text"
-                    class = "input-search"
-                    id = "title"
-                    name = "title"
-                    value = data.title
-                ) 
-            div(class = "form-add-data")
-                label(for="parent_id") Danh mục cha
-                select(
-                    name = "parent_id"
-                    id = "parent_id"
-                    class = "input-search"
+                div(class = "form-group")
+                    label(for="title") Tiêu đề 
+                    input(
+                        type="text"
+                        class = "form-control"
+                        id = "title"
+                        name = "title"
+                        value = data.title
+                    ) 
+                div(class = "form-group")
+                    label(for="parent_id") Danh mục cha
+                    select(
+                        name = "parent_id"
+                        id = "parent_id"
+                        class = "form-control"
+                    )
+                        option(value = "") -----Chọn danh mục cha-----
+                        if(records)
+                            +select-tree(records, 1, data.parent_id)
+                div(class = "form-group")
+                    label(for="desc") Mô tả 
+                    textarea(
+                        class = "form-control textarea-mce"
+                        id = "desc"
+                        name = "description"
+                        row = "5"
+                    ) #{data.description}
+                div(
+                    class = "form-group"
+                    upload-image
                 )
-                    option(value = "") -----Chọn danh mục cha-----
-                    if(records)
-                        +select-tree(records, 1, data.parent_id)
-            div(class = "form-add-data")
-                label(for="desc") Mô tả 
-                textarea(
-                    class = "input-search textarea-mce"
-                    id = "desc"
-                    name = "description"
-                    row = "5"
-                ) #{data.description}
-            div(
-                class = "form-add-data"
-                upload-image
-            )
-                
-                label(for="image") Ảnh
-                input(
-                    type="file"
-                    class = "input-search-file"
-                    id = "image"
-                    name = "image"
-                    accept = "image/*"
-                    upload-image-input
-                ) 
-                button(
-                    class = "btn-cencel-upload d-none"
-                    cencel-upload) X
-                
-                img(
-                    src=data.thumbnail
-                    class = "image-preview"
-                    upload-image-preview
-                )
-            div(class = "form-add-data")
-                label(for="position") Vị trí
-                input(
-                    type="text"
-                    class = "input-search"
-                    id = "position"
-                    name = "position"
-                    placeholder = "Tự động tăng"
-                    min = "1"
-                    value = data.position
-                ) 
-            div(class = "form-add-data form-check form-check-inline")
-                
-                input(
-                    type="radio"
-                    class = "form-check-input"
-                    id = "statusActive"
-                    name = "status"
-                    value = "active"
-                    checked = (data.status == "active" ? true : false)
-                ) 
-                label(for = "statusActive" class = "form-check-label") Hoạt động
+                    
+                    label(for="image") Ảnh
+                    input(
+                        type="file"
+                        class = "form-control-file"
+                        id = "image"
+                        name = "image"
+                        accept = "image/*"
+                        upload-image-input
+                    ) 
+                    button(
+                        class = "btn-cencel-upload d-none"
+                        cencel-upload) X
+                    
+                    img(
+                        src=data.thumbnail
+                        class = "image-preview"
+                        upload-image-preview
+                    )
+                div(class = "form-group")
+                    label(for="position") Vị trí
+                    input(
+                        type="text"
+                        class = "form-control"
+                        id = "position"
+                        name = "position"
+                        placeholder = "Tự động tăng"
+                        min = "1"
+                        value = data.position
+                    ) 
+                div(class = "form-group form-check form-check-inline")
+                    
+                    input(
+                        type="radio"
+                        class = "form-check-input"
+                        id = "statusActive"
+                        name = "status"
+                        value = "active"
+                        checked = (data.status == "active" ? true : false)
+                    ) 
+                    label(for = "statusActive" class = "form-check-label") Hoạt động
 
-            div(class = "form-add-data form-check form-check-inline")
+                div(class = "form-group form-check form-check-inline")
+                    
+                    input(
+                        type="radio"
+                        class = "form-check-input"
+                        id = "statusInActive"
+                        name = "status"
+                        value = "inactive"
+                        checked = (data.status == "inactive" ? true : false)
+                    ) 
+                    label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
                 
-                input(
-                    type="radio"
-                    class = "form-check-input"
-                    id = "statusInActive"
-                    name = "status"
-                    value = "inactive"
-                    checked = (data.status == "inactive" ? true : false)
-                ) 
-                label(for = "statusInActive" class = "form-check-label") Dừng hoạt động
-            
-            div(class = "form-add-data")
-                button(
-                    type = "submit"
-                    class = "btn btn-warning"
-                ) Áp dụng
+                div(class = "form-group")
+                    button(
+                        type = "submit"
+                        class = "btn btn-warning"
+                    ) Áp dụng
         

@@ -3,143 +3,153 @@ include ../../mixins/alert.pug
 
 
 block main 
-    .container-product
-        +success(5000)
-        .product-header Phân quyền
-        .product-body 
-            if(records)
+    +alert-error(5000)
+    +success(5000)
+    .section-products
+        .container-fluid
+            +success(5000)
+            .header
+                .inner-head
+                    .row 
+                        div(class = "col-12") 
+                            p(class = "inner-title") ShopWinMart
+                    .row 
+                        div(class = "col-6") 
+                            p(class = "inner-desc") Thêm mới sản phẩm
+            .inner-body
+                if(records)
 
-                div(data-records = records)
-                div(class = "text-right")
-                    button(
-                            type = "submit"
-                            class = "btn btn-warning"
-                            button-submit
-                        ) Cập nhật
-                
-                table(
-                    class = "table-role"
-                    table-permissions
-                )
-                    thead 
-                        tr 
+                    div(data-records = records)
+                    div(class = "text-right")
+                        button(
+                                type = "submit"
+                                class = "btn btn-warning"
+                                button-submit
+                            ) Cập nhật
+                    
+                    table(
+                        class = "table table-hover table-sm"
+                        table-permissions
+                    )
+                        thead 
+                            tr 
 
-                            th Tính năng
-                            each item in records
-                                th(class = "text-center") #{item.title} 
-                    tbody 
+                                th Tính năng
+                                each item in records
+                                    th(class = "text-center") #{item.title} 
+                        tbody 
 
-                        tr(data-name = "id" class = "d-none")
-                            td 
-                                each item in records 
-                                    td(class = "text-center")
-                                        input(type="text" value = item.id)
-                        td(colspan = "4")
-                            b Danh mục sản phẩm
-
-                        tr(data-name = "products-category_views")
-                            td Xem 
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                            
-                        tr(data-name = "products-category_create")
-                            td Thêm mới
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        tr(data-name = "products-category_edit")
-                            td Chỉnh sửa
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        tr(data-name = "products-category_delete")
-                            td Xóa
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        //- San Pham
-                        tr
+                            tr(data-name = "id" class = "d-none")
+                                td 
+                                    each item in records 
+                                        td(class = "text-center")
+                                            input(type="text" value = item.id)
                             td(colspan = "4")
-                                b Sản Phẩm
+                                b Danh mục sản phẩm
 
-                        tr(data-name = "products_views")
-                            td Xem 
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                            
-                        tr(data-name = "products_create")
-                            td Thêm mới 
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        tr(data-name = "products_edit")
-                            td Chỉnh sửa
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        tr(data-name = "products_delete")
-                            td Xóa
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        //- Nhom quyen
-                        tr
-                            td(colspan = "4")
-                                b Nhóm quyền
+                            tr(data-name = "products-category_views")
+                                td Xem 
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                                
+                            tr(data-name = "products-category_create")
+                                td Thêm mới
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            tr(data-name = "products-category_edit")
+                                td Chỉnh sửa
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            tr(data-name = "products-category_delete")
+                                td Xóa
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            //- San Pham
+                            tr
+                                td(colspan = "4")
+                                    b Sản Phẩm
 
-                        tr(data-name = "roles_views")
-                            td Xem 
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                            
-                        tr(data-name = "roles_create")
-                            td Thêm mới 
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        tr(data-name = "roles_edit")
-                            td Chỉnh sửa
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        tr(data-name = "roles_delete")
-                            td Xóa
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        tr(data-name = "roles_permissions")
-                            td Phân quyền
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        tr
-                            td(colspan = "4")
-                                b Tài khoản
+                            tr(data-name = "products_views")
+                                td Xem 
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                                
+                            tr(data-name = "products_create")
+                                td Thêm mới 
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            tr(data-name = "products_edit")
+                                td Chỉnh sửa
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            tr(data-name = "products_delete")
+                                td Xóa
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            //- Nhom quyen
+                            tr
+                                td(colspan = "4")
+                                    b Nhóm quyền
 
-                        tr(data-name = "accounts_views")
-                            td Xem 
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                            
-                        tr(data-name = "accounts_create")
-                            td Thêm mới 
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        tr(data-name = "accounts_edit")
-                            td Chỉnh sửa
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
-                        tr(data-name = "accounts_delete")
-                            td Xóa
-                            each item in records
-                                td(class = "text-center") 
-                                    input(type="checkbox")
+                            tr(data-name = "roles_views")
+                                td Xem 
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                                
+                            tr(data-name = "roles_create")
+                                td Thêm mới 
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            tr(data-name = "roles_edit")
+                                td Chỉnh sửa
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            tr(data-name = "roles_delete")
+                                td Xóa
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            tr(data-name = "roles_permissions")
+                                td Phân quyền
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            tr
+                                td(colspan = "4")
+                                    b Tài khoản
+
+                            tr(data-name = "accounts_views")
+                                td Xem 
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                                
+                            tr(data-name = "accounts_create")
+                                td Thêm mới 
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            tr(data-name = "accounts_edit")
+                                td Chỉnh sửa
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
+                            tr(data-name = "accounts_delete")
+                                td Xóa
+                                each item in records
+                                    td(class = "text-center") 
+                                        input(type="checkbox")
                 
     form(
         action= `${prefixAdmin}/roles/permissions?_method=PATCH`

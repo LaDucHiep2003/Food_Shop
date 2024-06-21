@@ -1,7 +1,7 @@
 mixin sort()
-    div(sort style = "display : flex")
+    div(sort class="d-flex justify-content-center")
         select(
-            class = "input-search"
+            class = "inner-sort"
             name = "sort"
             sort-select
         )
@@ -13,6 +13,6 @@ mixin sort()
             option(value = "title-asc") Tiêu đề A - Z 
             option(value = "title-desc") Tiêu đề Z - A
         button(
-            class = "btn btn-submit"
+            class = "btn btn-clear"
             sort-clear
         ) Clear

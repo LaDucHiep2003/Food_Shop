@@ -6,20 +6,19 @@ mixin form-change-multi(path)
         method = "POST"
         form-change-multi
     ) 
-
         .container-change-multi-prouduct
-            .form-group
+            div(class="form-group mb-0")
                 select(name = "type" class="input-search")
-                    option(disabled selected) ---Chọn hành động--- 
+                    option(disabled selected) ---Hành động--- 
                     option(value="active") Hoạt động
                     option(value="inactive") Dừng hoạt động 
                     option(value="delete-all") Xóa tất cả
                     option(value="change-position") Cập nhật vị trí
-            .form-group 
+            div(class="form-group") 
                 input(
                     type="text"
                     name = "ids"
                     value = ""
-                    class = "input-search d-none"
+                    class = "d-none"
                 )
-            button(type = "submit" class="btn-submit") Áp dụng
+            button(type = "submit" class="inner-button") Áp dụng
